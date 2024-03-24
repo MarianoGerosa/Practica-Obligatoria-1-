@@ -127,14 +127,14 @@ let watchList = [
 		imdbID: 'tt0499549',
 		Type: 'movie',
 		Response: 'True',
-	},
+	}
 ];
 
-// const returnMovieTitle = (watchlist) => {
+const returnMovieTitle = (watchlist) => {
+    return watchList
+	.filter(filtList => filtList.Director == "Christopher Nolan" && filtList.imdbRating > 8.0)
+	.map(filtList => filtList.Title);
+}
 
-    // Aquí adentro escriban la función
-    
-// }
-
-// const titlesArray = returnMovieTitle(watchList);
-// console.log(titlesArray);
+const titlesArray = returnMovieTitle(watchList);
+console.log(titlesArray);
