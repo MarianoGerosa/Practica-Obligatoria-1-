@@ -1,22 +1,24 @@
 import PropTypes from "prop-types";
 
 const Table = ({ netIncomes }) => {
+  const totalIncome = netIncomes.reduce((x, item) => x + item.income, 0);
+  const averageIncome = totalIncome / netIncomes.length;
+
   return (
     <table>
-      <thead>
-        <tr>
-          <th>Brand</th>
-          <th>Net Income</th>
+      <tr>
+        <th>Brand</th>
+        <th>Net Income</th>
+      </tr>
+
+      {netIncomes.map((item, index) => (
+        <tr key={index}>
+          <td>{item.brand}</td>
+          <td>{item.income}</td>
         </tr>
-      </thead>
-      <tbody>
-        {netIncomes.map((item, index) => (
-          <tr key={index}>
-            <td>{item.brand}</td>
-            <td>{item.income}</td>
-          </tr>
-        ))}
-      </tbody>
+      ))}
+
+      <p>Average net income: {averageIncome.toFixed(2)}</p>
     </table>
   );
 };
@@ -24,10 +26,5 @@ const Table = ({ netIncomes }) => {
 export default Table;
 
 Table.propTypes = {
-  netIncomes: PropTypes.arrayOf(
-    PropTypes.shape({
-      brand: PropTypes.string,
-      income: PropTypes.number,
-    })
-  )
+  netIncomes: PropTypes.arrayOf,
 };

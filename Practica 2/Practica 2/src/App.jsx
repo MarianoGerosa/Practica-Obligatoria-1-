@@ -7,14 +7,10 @@ const App = () => {
     { brand: "KFC", income: 1098463 },
   ];
 
-  const totalIncome = netIncomes.reduce((acc, item) => acc + item.income, 0);
-  const averageIncome = totalIncome / netIncomes.length;
-
   return (
     <div>
       <h1>Net Income Table</h1>
       <Table netIncomes={netIncomes} />
-      <p>Average net income: {averageIncome.toFixed(2)}</p>
     </div>
   );
 };
