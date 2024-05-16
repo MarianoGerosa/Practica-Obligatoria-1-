@@ -1,13 +1,16 @@
 import { useState } from "react";
-import Task from "./components/task/Task";
+import "./App.css";
+import TaskList from "./components/taskList/TaskList";
 import AddTask from "./components/addTask/AddTask";
 
 const App = () => {
   const [task, setTask] = useState([]);
+  const [taskId, setTaskId] = useState(1);
 
   const addTask = (taskName) => {
-    const newTask = { id: Date.now(), taskName, completed: false };
+    const newTask = { id: taskId, taskName, completed: false };
     setTask([...task, newTask]);
+    setTaskId(taskId + 1);
   };
 
   const completeTask = (id) => {
@@ -24,11 +27,13 @@ const App = () => {
 
   return (
     <div>
+      <h1>Task List</h1>
+
       <AddTask addTask={addTask} />
-      <Task 
-        task={task} 
-        completeTask={completeTask} 
-        deleteTask={deleteTask} 
+      <TaskList
+        tasks={task}
+        completeTask={completeTask}
+        deleteTask={deleteTask}
       />
     </div>
   );

@@ -1,9 +1,8 @@
 import PropTypes from "prop-types";
 
-
 const Task = ({ task, completeTask, deleteTask }) => (
-  <div style={{ textDecoration: task.completed ? "line-through" : "" }}>
-    {task.title}
+  <div style={{ color: task.completed ? "red" : "inherit" }}>
+    {task.taskName}
     <button onClick={() => completeTask(task.id)}>Complete</button>
     <button onClick={() => deleteTask(task.id)}>Delete</button>
   </div>
@@ -19,16 +18,12 @@ const TaskList = ({ tasks, completeTask, deleteTask }) =>
     />
   ));
 
-export default Task;
-
-Task.propTypes = {
-  addTask: PropTypes.func.isRequired,
-};
+export default TaskList;
 
 Task.propTypes = {
   task: PropTypes.shape({
     id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
+    taskName: PropTypes.string.isRequired,
     completed: PropTypes.bool.isRequired,
   }).isRequired,
   completeTask: PropTypes.func.isRequired,
@@ -39,7 +34,7 @@ TaskList.propTypes = {
   tasks: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
-      title: PropTypes.string.isRequired,
+      taskName: PropTypes.string.isRequired,
       completed: PropTypes.bool.isRequired,
     })
   ).isRequired,
