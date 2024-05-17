@@ -1,10 +1,10 @@
 import PropTypes from "prop-types";
 
-const Task = ({ task, completeTask, deleteTask }) => (
-  <div style={{ color: task.completed ? "red" : "inherit" }}>
-    {task.taskName}
-    <button onClick={() => completeTask(task.id)}>Complete</button>
-    <button onClick={() => deleteTask(task.id)}>Delete</button>
+const Task = ({ task: { id, taskName, completed }, completeTask, deleteTask }) => (
+  <div style={{ color: completed ? "red" : "inherit" }}>
+    {taskName}
+    <button onClick={() => completeTask(id)}>Complete</button>
+    <button onClick={() => deleteTask(id)}>Delete</button>
   </div>
 );
 
@@ -17,8 +17,6 @@ const TaskList = ({ tasks, completeTask, deleteTask }) =>
       deleteTask={deleteTask}
     />
   ));
-
-export default TaskList;
 
 Task.propTypes = {
   task: PropTypes.shape({
@@ -41,3 +39,5 @@ TaskList.propTypes = {
   completeTask: PropTypes.func.isRequired,
   deleteTask: PropTypes.func.isRequired,
 };
+
+export default TaskList;
