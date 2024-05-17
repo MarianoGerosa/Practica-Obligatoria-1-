@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 
 const Task = ({ task: { id, taskName, completed }, completeTask, deleteTask }) => (
-  <div style={{ color: completed ? "red" : "inherit" }}>
+  <div style={{ color: completed ? "red" : "inherit", textDecoration: completed ? "line-through" : "none" }}>
     {taskName}
     <button onClick={() => completeTask(id)}>Complete</button>
     <button onClick={() => deleteTask(id)}>Delete</button>
